@@ -28,18 +28,48 @@
     </li>
 </ul>
 
+<p id="hello"></p>
+
 <script>
-    let fifaSpeler = {
-        firstName : "Lionel",
-        lastName : "Messi",
-        length: 1.56,
-        salary : 10000000,
-        scoreRating: 94,
-        scorePotential: 96
+
+    function Speler(firstname, last, l, salary, scoreR, scoreP) {
+        this.firstName = firstname;
+        this.lastName = last;
+        this.humanLength = l;
+        this.salary = salary;
+        this.scoreRating = scoreR;
+        this.scorePotential = scoreP;
     }
 
-    let jsonThing = JSON.stringify(fifaSpeler);
-    console.log(jsonThing);
+    let fifaSpeler = new Speler("Lionel", "Messi", 1.56, 10000000, 86, 94);
+
+    Speler.prototype.fullname = function() {
+        return this.firstName + " " + this.lastName;
+    }
+
+    Speler.prototype.lengteFunctie = function () {
+        return this.lastName + " is " + this.humanLength + " groot";
+    }
+
+    console.log(fifaSpeler.fullname());
+    console.log(fifaSpeler.lengteFunctie());
+
+    Speler.prototype.scoreVerhogen = function () {
+        if(this.scoreRating < this.scorePotential) {
+            this.scoreRating++;
+            return true;
+        }
+        return false;
+    }
+
+
+
+    let jsonString = JSON.stringify(fifaSpeler);
+
+    document.getElementById("hello").innerText = jsonString;
+
+    console.log(fifaSpeler.salary);
+
 </script>
 </body>
 </html>
